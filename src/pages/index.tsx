@@ -1,3 +1,4 @@
+import { trpc } from "@/utils/trpc";
 import type { NextPage } from "next";
 import { useTheme } from "next-themes";
 import Head from "next/head";
@@ -33,6 +34,10 @@ const ThemeChanger = () => {
 };
 
 const Home: NextPage = () => {
+  const { data } = trpc.useQuery(["hello"]);
+
+  useEffect(() => console.log(data), [data]);
+
   return (
     <div>
       <Head>
