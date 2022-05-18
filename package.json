@@ -10,9 +10,9 @@
     "lint:next": "next lint",
     "lint:staged": "lint-staged",
     "lint:types": "tsc --noEmit --pretty",
-    "lint": "yarn lint:types && yarn lint:next",
-    "lint:fix": "yarn lint:types && yarn lint:next --fix",
-    "precommit": "yarn lint:staged"
+    "lint": "pnpm lint:types && pnpm lint:next",
+    "lint:fix": "pnpm lint:types && pnpm lint:next --fix",
+    "precommit": "pnpm lint:staged"
   },
   "dependencies": {
     "@trpc/client": "^9.23.2",
