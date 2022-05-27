@@ -2,9 +2,11 @@ import * as trpc from "@trpc/server";
 import * as trpcNext from "@trpc/server/adapters/next";
 import { z } from "zod";
 import { prisma } from "@/utils/prisma";
+import superjson from "superjson";
 
 export const appRouter = trpc
   .router()
+  .transformer(superjson)
   .mutation("addUrl", {
     input: z.object({
       name: z.string(),
@@ -15,6 +17,16 @@ export const appRouter = trpc
         data: {
           url,
           name,
+        },
+      });
+    },
+  })
+  .mutation("removeUrl", {
+    input: z.number(),
+    async resolve({ input: id }) {
+      return await prisma.short.delete({
+        where: {
+          id,
         },
       });
     },
